@@ -61,6 +61,7 @@ void printCheck() {
 
 int main()
 {
+    printf("Hello\n");
     scanProducts();
     printCheck();
 }
