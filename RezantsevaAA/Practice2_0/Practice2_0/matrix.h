@@ -1,6 +1,6 @@
+#define _CRT_SECURE_NO_WARNINGS
 #ifndef _MATRIX_H
 #define _MATRIX_H
-#define N 3
 typedef struct
 {
 	float* x;
@@ -13,4 +13,9 @@ void free_matrix(TMatrix** matrix);
 void fill_matrix(TMatrix* matrix);
 void print_matrix(TMatrix* matrix);
 
-#endif
+TMatrix* add_matrix(TMatrix* matrix1, TMatrix* matrix2);
+TMatrix* add_const(TMatrix* matrix, float c);
+
+TMatrix* multi_matrix(TMatrix* matrix1, TMatrix* matrix2);
+TMatrix* multi_const(TMatrix* matrix, float c);
+#endif  _MATRIX_H

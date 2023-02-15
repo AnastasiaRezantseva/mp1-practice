@@ -7,7 +7,7 @@ void allocate_matrix(TMatrix** matrix, int n)
 {
 	(*matrix) = (TMatrix*)malloc(sizeof(TMatrix)*1);
 	(*matrix)->n = n;
-	(*matrix)->x = (int*)malloc(sizeof(int) * n);
+	(*matrix)->x = (int*)malloc(sizeof(int) * n * n);
 
 }
 

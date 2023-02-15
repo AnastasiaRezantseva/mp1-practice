@@ -1,8 +1,15 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "matrix.h"
 #include <stdio.h>
 int main()
 {
-	TMatrix* matrix_dynamic, *m1, *m2;
+	TMatrix* matrix_dynamic, *m1, *m2, *res;
+/*
+	allocate_matrix(&matrix_dynamic, 2);
+	fill_matrix(matrix_dynamic);
+	print_matrix(matrix_dynamic);
+	free_matrix(&matrix_dynamic);
+*/
 	allocate_matrix(&m1, 2);
 	allocate_matrix(&m2, 2);
 	fill_matrix(m1);
@@ -10,6 +17,22 @@ int main()
 
 	print_matrix(m1);
 	print_matrix(m2);
+
+	res = add_matrix(m1, m2);
+	print_matrix(res);
+	free_matrix(&res);
+
+	res = add_const(m1, 2);
+	print_matrix(res);
+	free_matrix(&res);
+
+	res = multi_matrix(m1, 2);
+	print_matrix(res);
+	free_matrix(&res);
+
+	res = multi_const(m1, 2);
+	print_matrix(res);
+	free_matrix(&res);
 
 	free_matrix(&m1);
 	free_matrix(&m1);
