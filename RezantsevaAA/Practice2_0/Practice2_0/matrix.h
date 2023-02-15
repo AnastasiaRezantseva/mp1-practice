@@ -1,11 +1,10 @@
-#define _CRT_SECURE_NO_WARNINGS
 #ifndef _MATRIX_H
 #define _MATRIX_H
 typedef struct
 {
 	float* x;
 	int n;
-}TMatrix;
+} TMatrix;
 
 void allocate_matrix(TMatrix** matrix, int n);
 void free_matrix(TMatrix** matrix);
@@ -18,4 +17,4 @@ TMatrix* add_const(TMatrix* matrix, float c);
 
 TMatrix* multi_matrix(TMatrix* matrix1, TMatrix* matrix2);
 TMatrix* multi_const(TMatrix* matrix, float c);
-#endif  _MATRIX_H
+#endif _MATRIX_H
