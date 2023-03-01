@@ -3,12 +3,12 @@
 int main()
 {
     TMatrix* matrix_dynamic, * m1, * m2, * res;
-    /*
+
     allocate_matrix(&matrix_dynamic, 2);
     fill_matrix(matrix_dynamic);
     print_matrix(matrix_dynamic);
     free_matrix(&matrix_dynamic);
-    */
+
     allocate_matrix(&m1, 2);
     allocate_matrix(&m2, 2);
    
