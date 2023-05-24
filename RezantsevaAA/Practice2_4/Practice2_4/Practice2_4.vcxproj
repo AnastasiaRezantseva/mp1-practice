@@ -127,14 +127,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Product.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="TContainer.cpp" />
+    <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Receipt.cpp" />
+    <ClCompile Include="ReceiptLine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Client.h" />
     <ClInclude Include="Container.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="Receipt.h" />
     <ClInclude Include="ReceiptLine.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Storage.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
