@@ -1,4 +1,4 @@
-#ifndef _RECIPTLINE_H //список  
+#ifndef _RECIPTLINE_H 
 #define _RECIPTLINE_H
 #include "Product.h"
 #include <fstream>

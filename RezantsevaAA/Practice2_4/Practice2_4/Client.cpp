@@ -20,7 +20,7 @@ TContainer<Base> createStorage(std::string path) {
 	return storage;
 }
 
-
+//change
 void getReceipt(const TContainer<Base>& storage)
 {
 	Receipt basket;
@@ -30,24 +30,35 @@ void getReceipt(const TContainer<Base>& storage)
 
 	while (true) {
 
-		std::cout << "Enter 0 :complete the program; 1: add some products 2: remove some products 3: output receipt 4: print all products " << std::endl;
+		std::cout << "Enter \n 0: complete shopping and print receipt\n " << "1: add some products \n " << "2: remove some products \n " << "3: show basket \n " << "4: print range \n " << std::endl;
 
 		int client, flag = 1;
 		std::cin >> client;
 
 		if (client == 0) {
 			flag = 0;
-			std::cout << "Thank you for your purchase :)" << std::endl;
+			if (basket.empty())
+			{
+				std::cout << "Nothing in the basket. Add something.\n" << std::endl;
+				continue;
+			}
+			std::cout << basket << '\n';
+			std::cout << "Thank you for your purchase " << std::endl;
 			return;
 		}
 
-		if (client == 1) {
+		if (client == 1) 
+		{
 			flag = 0;
-			std::cout << "Input barcode of product." << std::endl;
+			std::cout << "Input barcode of product and a count." << std::endl;
 			std::string product;
 			std::cin >> product;
 
 			int count = 0, ucount;
+
+			//now we have product "merchandise" 
+			Base merchandise = *storage.find(product);
+			count = merchandise.get_count();
 
 			// if client entered barcode of the product we dont have 
 			if (storage.find(product) == nullptr)
@@ -56,16 +67,10 @@ void getReceipt(const TContainer<Base>& storage)
 				continue;
 			}
 
-			//now we have product "merchandise" 
-			Base merchandise = *storage.find(product);
-			count = merchandise.get_count();
-			std::cout << "Your product:" << merchandise.get_product() << std::endl;
-
-			std::cout << "Input a count of products between 0 and " << count << std::endl;
 			std::cin >> ucount;
 			//changing count in the base
 			if (ucount < 0 || ucount > count) {
-				std::cout << "Wrong count. Try again." << std::endl;
+				std::cout << "Wrong count. You can input a count of products only between 0 and " << count << std::endl;
 				continue;
 			}
 			if (ucount == 0) {
@@ -81,7 +86,7 @@ void getReceipt(const TContainer<Base>& storage)
 				basket.add(merchandise.get_product(), ucount);
 
 			}
-			std::cout << "\nAdded" << std::endl;
+			std::cout << "\nAdded \n" << std::endl;
 		}
 		if (client == 2) {
 
@@ -92,18 +97,17 @@ void getReceipt(const TContainer<Base>& storage)
 				std::cout << "Basket is empty. Add something.\n" << std::endl;
 				continue;
 			}
-			std::cout << "Which one do you want to remove ? Input barcode of product." << std::endl;
-			std::string product;  
+			std::cout << "Which one do you want to remove ? Input barcode of product.\n" << std::endl;
+			std::string product;
 			std::cin >> product;
 			int ucount;
 
 			//find element in the basket
 			ReceiptLine* tmp = basket.find(product);
 			if (tmp == nullptr) {
-				std::cout << "You dont have this product in the basket. " << std::endl;
+				std::cout << "You dont have this product in the basket. \n" << std::endl;
 				continue;
 			}
-
 
 			//client count 
 			std::cout << "Input a count of products between 0 and " << tmp->get_count() << std::endl;
@@ -122,7 +126,7 @@ void getReceipt(const TContainer<Base>& storage)
 
 			//remove 
 			basket.remove(*tmp, ucount);
-			std::cout << "\nDone!" << std::endl;
+			std::cout << "\nDone! \n" << std::endl;
 			basket.print_basket();
 
 		}
@@ -134,14 +138,14 @@ void getReceipt(const TContainer<Base>& storage)
 				std::cout << "Nothing in the basket. Add something.\n" << std::endl;
 				continue;
 			}
-			std::cout << basket << '\n';
+			basket.print_basket();
 		}
 		if (client == 4)
 		{
 			std::cout << storage;
 			flag = 0;
 		}
-		if (flag) std::cout << "Input Date is wrong. Try again. " << std::endl;
+		if (flag) std::cout << "Input Date is wrong. Try again. \n" << std::endl;
 	}
 
 	std::cout << "Thank you for your purchase. " << std::endl;

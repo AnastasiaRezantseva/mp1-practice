@@ -10,10 +10,10 @@ class TContainer
 {
 protected:
 
-	TELEM* elem; // массив хранимых элементов
-	int size; // размер массива
-	int count; // к-во реально хранимых элементов
-	const static int sizestep = 10; // шаг наращивания размера массива
+	TELEM* elem; // array of stored elements
+	int size; // array size
+	int count; // number of actually stored elements
+	const static int sizestep = 10; // array increment step
 
 public:
 	TContainer(int _size = 50)
@@ -62,7 +62,7 @@ public:
 		return sizestep;
 	};
 	
-	void Add(TELEM _elm) // добавить элемент
+	void Add(TELEM _elm) // add element
 	{
 		if (_find(_elm) == -1)
 		{
@@ -71,12 +71,12 @@ public:
 		}
 	}; 
 
-	void Del(TELEM _elm) // удалить элемент по его значению
+	void Del(TELEM _elm) // remove element by its value
 	{
 		Del(_find(_elm));
 	}; 
 
-	void Del(int index) // удалить элемент по его номеру
+	void Del(int index) // remove element by number
 	{
 		if (index > -1 && index < count)
 			for (int i = index; i < count - 1; i++)
@@ -84,7 +84,7 @@ public:
 		count--;
 	};
 
-	TELEM& operator[](const TELEM& _elm) // индексация по содержанию
+	TELEM& operator[](const TELEM& _elm) // content indexing
 	{
 		int index;
 		if ((index = _find(_elm)) == -1)
@@ -92,21 +92,21 @@ public:
 			TContainerExeption expt = cntVALOUTOFRANGE;
 			throw expt;
 		}
-		return elem[index]; // тип возвращаемого значения
+		return elem[index]; 
 	};
 
-	TELEM& operator[](int index) const // индексация по номеру
+	TELEM& operator[](int index) const //  indexing by number
 	{	
 		if (index < 0 || index >= count)
 		{
 			TContainerExeption expt = cntINDOUTOFRANGE;
 			throw expt;
 		}
-		return elem[index]; // тип возвращаемого значения
+		return elem[index]; 
 	}; 
 
 
-	const TELEM& operator[](const TELEM& _elm) const // индексация по содержанию
+	const TELEM& operator[](const TELEM& _elm) const // content indexing
 	{
 		int index;
 		if ((index = _find(_elm)) == -1)
@@ -114,10 +114,10 @@ public:
 			TContainerExeption expt = cntVALOUTOFRANGE;
 			throw expt;
 		}
-		return elem[index]; // тип возвращаемого значения
+		return elem[index]; 
 	}; 
 		
-	TContainer& operator=(const TContainer& _cnt) // присваивание контейнеров
+	TContainer& operator=(const TContainer& _cnt) // container assignment
 	{
 		if (this != &_cnt) {
 			delete[] elem;
@@ -130,7 +130,7 @@ public:
 		return *this;
 	};
 
-	TContainer operator+(const TContainer& _cnt) // объединение контейнеров
+	TContainer operator+(const TContainer& _cnt) // container pooling
 	{
 		int i;
 		TContainer<TELEM> tmp(count + _cnt.count + sizestep);
@@ -142,7 +142,7 @@ public:
 		return tmp;
 	};
 
-	TContainer operator*(const TContainer& _cnt) // пересечение контейнеров
+	TContainer operator*(const TContainer& _cnt) // container crossing
 	{
 		int i;
 		int ss = count;
@@ -160,7 +160,7 @@ public:
 		return tmp;
 	};
 
-	TContainer operator-(const TContainer& _cnt) // разность контейнеров
+	TContainer operator-(const TContainer& _cnt) // container difference
 	{
 		int i;
 		TContainer<TELEM> tmp(count + sizestep);
@@ -292,7 +292,7 @@ public:
 		return count;
 	};
 
-	template <typename  Type> // type of find element
+	template <typename  Type> // fine id
 	int _find(const Type& _elm) const
 	{
 		int nom = -1;
@@ -318,7 +318,7 @@ public:
 		return nullptr;
 	};
 
-	void resize(int dsize = 0) // увеличить длину контейнера
+	void resize(int dsize = 0) // increase container length
 	{
 		if (dsize == 0)
 		{

@@ -8,8 +8,7 @@
 
 using namespace std;
 
-
-//"C:\Users\Anastasiya\Desktop\test\mp1-practice\RezantsevaAA\Practice2_4\Practice2_4\Storage.txt"
+//C:\Users\Anastasiya\Desktop\test\mp1-practice\RezantsevaAA\Practice2_4\Practice2_4\Storage.txt
 int main()
 {
 	std::string pathToStorage = getPath();

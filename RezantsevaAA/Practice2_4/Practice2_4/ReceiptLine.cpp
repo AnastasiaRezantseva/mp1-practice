@@ -1,4 +1,3 @@
-//ReceiptLine
 #include "ReceiptLine.h"
 #include <iostream>
 
