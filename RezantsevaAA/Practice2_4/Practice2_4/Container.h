@@ -334,8 +334,6 @@ public:
 
 };
 
-
-
 template <class Type>
 void read(const std::string& path, TContainer<Type>& data)
 {
@@ -347,7 +345,5 @@ void read(const std::string& path, TContainer<Type>& data)
 	file >> data;
 	file.close();
 };
-
-
 
 #endif _CONTAINER_H

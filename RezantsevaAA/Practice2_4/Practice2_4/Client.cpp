@@ -20,7 +20,6 @@ TContainer<Base> createStorage(std::string path) {
 	return storage;
 }
 
-//change
 void getReceipt(const TContainer<Base>& storage)
 {
 	Receipt basket;
@@ -56,11 +55,10 @@ void getReceipt(const TContainer<Base>& storage)
 
 			int count = 0, ucount;
 
-			//now we have product "merchandise" 
+			//product "merchandise"
 			Base merchandise = *storage.find(product);
 			count = merchandise.get_count();
 
-			// if client entered barcode of the product we dont have 
 			if (storage.find(product) == nullptr)
 			{
 				std::cout << "Wrong barcode." << std::endl;
@@ -117,7 +115,7 @@ void getReceipt(const TContainer<Base>& storage)
 				continue;
 			}
 
-			// add deleted from the basket elements to the base
+			// add deleted from the basket elements to the storage
 			int index = storage._find(product);
 			if (index >= 0 && index < storage.len())
 			{
@@ -126,7 +124,7 @@ void getReceipt(const TContainer<Base>& storage)
 
 			//remove 
 			basket.remove(*tmp, ucount);
-			std::cout << "\nDone! \n" << std::endl;
+			std::cout << "\nDeleted \n" << std::endl;
 			basket.print_basket();
 
 		}
