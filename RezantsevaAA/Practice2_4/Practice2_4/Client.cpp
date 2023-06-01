@@ -4,6 +4,7 @@
 #include <string>
 #include "Client.h"
 
+
 std::string getPath()
 {
 	std::string path;
@@ -13,7 +14,9 @@ std::string getPath()
 	return path;
 } 
 
-TContainer<Base> createStorage(std::string path) {
+
+
+TContainer<Base> createStorage( const  std::string& path) {
 	TContainer<Base> storage; // Storage of products
 	read(path, storage);
 
@@ -54,6 +57,7 @@ void getReceipt(const TContainer<Base>& storage)
 			std::cin >> product;
 
 			int count = 0, ucount;
+
 
 			//product "merchandise"
 			Base merchandise = *storage.find(product);
@@ -145,6 +149,9 @@ void getReceipt(const TContainer<Base>& storage)
 		}
 		if (flag) std::cout << "Input Date is wrong. Try again. \n" << std::endl;
 	}
+	std::string filename;
+	std::cin >> filename;
+	data_base(storage, filename);
 
 	std::cout << "Thank you for your purchase. " << std::endl;
 

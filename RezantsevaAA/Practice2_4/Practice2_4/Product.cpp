@@ -45,7 +45,7 @@ std::istream& operator>>(std::istream& buf, Product& data)
     return buf;
 }
 
-Product& Product::operator=(const Product& new_product)
+const Product& Product::operator=(const Product& new_product)
 {
     if (this != &new_product) {
         code = new_product.code;

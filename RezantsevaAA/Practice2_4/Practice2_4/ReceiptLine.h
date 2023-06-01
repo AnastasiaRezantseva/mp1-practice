@@ -23,7 +23,7 @@ public:
 	bool operator == (const std::string& tmp) const;
 	bool operator <= (const int& ncount) const;
 
-	ReceiptLine& operator = (const ReceiptLine& tmp);
+	const ReceiptLine& operator = (const ReceiptLine& tmp); //!!!
 	ReceiptLine& operator += (const int& ncount);
 	ReceiptLine& operator -= (const int& ncount);
 

@@ -20,7 +20,7 @@ public:
     friend std::istream& operator>>(std::istream& buf, Product& data);
     friend std::ostream& operator<<(std::ostream& buf, const Product& data);
 
-    Product& operator=(const Product& new_product);
+    const Product& operator=(const Product& new_product); //!!!
     bool operator==(const std::string& str) const;
     bool operator==(const Product& prod) const;
 

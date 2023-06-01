@@ -61,7 +61,7 @@ bool ReceiptLine::operator <= (const int& ncount) const
 	return count <= ncount;
 }
 
-ReceiptLine& ReceiptLine::operator = (const ReceiptLine& tmp) {
+const ReceiptLine& ReceiptLine::operator = (const ReceiptLine& tmp) {
 	product = tmp.product;
 	count = tmp.count;
 	return *this;

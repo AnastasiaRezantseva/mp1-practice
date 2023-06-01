@@ -31,23 +31,24 @@ public:
 	friend std::istream& operator>>(std::istream& buf, Receipt& date);
 	friend std::ostream& operator<<(std::ostream& buf, const Receipt& date);
 
-	Receipt& operator=(const Receipt& receipt);
+
+	const Receipt& operator=(const Receipt& receipt); 
 	
-	void add(const ReceiptLine& product, const int& count = 0);
-	void add(const Product& product, const int& count);
+	void add(const ReceiptLine& product, const int& count = 0); 
+	//void add(const Product& product, const int& count); //????
 	void remove(const ReceiptLine& product, const int& count);
 
-	void print_receiptline() const;
+	//void print_receiptline() const;
 	void pdate();
 	void set_num(const int& q);
-	void print_basket() const;
+	void print_basket() const; 
 	double sum() const;
 
-	ReceiptLine* find(const Base& product) const;
-	ReceiptLine* find(const std::string& product) const;
+	 ReceiptLine* find(const Base& product) const;
+	 ReceiptLine* find(const std::string& product) const;
 
 	int len() const;
-	bool empty();
+	bool empty() const;
 };
 
 #endif _RECEIPT_H

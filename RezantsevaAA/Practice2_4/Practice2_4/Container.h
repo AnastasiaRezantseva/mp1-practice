@@ -16,12 +16,7 @@ protected:
 	const static int sizestep = 10; // array increment step
 
 public:
-	TContainer(int _size = 50)
-	{
-		elem = new TELEM[_size];
-		count = 0;
-		size = _size;
-	};
+	TContainer(int _size = 50);
 
 	TContainer(const TContainer& _cnt)
 	{
@@ -34,20 +29,20 @@ public:
 
 	~TContainer()
 	{
-			if (size > 0) {
-				delete[] elem;
-				elem = 0;
-				count = 0;
-				size = 0;
-			}
+		if (size > 0) {
+			delete[] elem;
+			elem = 0;
+			count = 0;
+			size = 0;
+		}
 	};
 	
-	int getCount()
+	int getCount() const
 	{
 		return count;
 	};
 
-	int getSize()
+	int getSize() const
 	{
 		return size;
 	};
@@ -57,7 +52,7 @@ public:
 		size = new_count;
 	};
 	
-	int getSizestep()
+	int getSizestep() const
 	{
 		return sizestep;
 	};
@@ -117,7 +112,7 @@ public:
 		return elem[index]; 
 	}; 
 		
-	TContainer& operator=(const TContainer& _cnt) // container assignment
+	const TContainer& operator=(const TContainer& _cnt) // container assignment
 	{
 		if (this != &_cnt) {
 			delete[] elem;
@@ -214,8 +209,15 @@ public:
 		{
 			resize();
 		}
+		for (int i = count; i > size + 1; i--)
+		{
+			elem[i] = elem[i - 1];
+		}
+		elem[index] = value;
+		count++;
 
-		TELEM* tmp = new TELEM[count];
+		/*
+		TELEM* tmp = new TELEM[count]; ///!!!!
 		for (int i = 0; i < count; i++)
 		{
 			tmp[i] = elem[i];
@@ -227,7 +229,10 @@ public:
 		}
 		count++;
 		delete[] tmp;
+		*/
 	};
+
+	
 
 	void push_back(const TELEM& value)
 	{
@@ -292,8 +297,8 @@ public:
 		return count;
 	};
 
-	template <typename  Type> // fine id
-	int _find(const Type& _elm) const
+	// fine id
+	 int _find(const TELEM& _elm) const
 	{
 		int nom = -1;
 		for (int i = 0; i < count; i++)
@@ -307,8 +312,8 @@ public:
 		return nom;
 	};
 
-	template <typename  Type> // type of find element
-	TELEM* find(const Type& element) const
+	// type of find element
+	 TELEM* find(const TELEM& element) const
 	{
 		for (int i = 0; i < count; i++) {
 			if (elem[i] == element) {
@@ -334,8 +339,17 @@ public:
 
 };
 
+
+template <class TELEM>
+TContainer<TELEM>::TContainer(int _size)
+{
+	elem = new TELEM[_size];
+	count = 0;
+	size = _size;
+};
+
 template <class Type>
-void read(const std::string& path, TContainer<Type>& data)
+void read(const std::string& path, TContainer<Type>& data) 
 {
 	std::ifstream file(path);
 
@@ -345,5 +359,6 @@ void read(const std::string& path, TContainer<Type>& data)
 	file >> data;
 	file.close();
 };
+
 
 #endif _CONTAINER_H

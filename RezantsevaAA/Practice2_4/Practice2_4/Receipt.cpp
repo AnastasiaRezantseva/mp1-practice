@@ -42,10 +42,30 @@ std::ostream& operator<<(std::ostream& buf, const Receipt& receipt)
 	}
 	buf << std::endl;
 	buf << "Total cost = " << receipt.sum() << '\n';
+	 
+	
 	return buf;
 }
 
-Receipt& Receipt :: operator=(const Receipt& receipt)
+/*
+	if (!receipt.size) {
+		buf << "Nothing in the cart. Add something." << std::endl;
+	}
+	buf << "Your products: " << std::endl;
+	buf << receipt.products << std::endl;
+	*/
+
+void Receipt::print_basket() const {
+	if (!size) {
+		std::cout << "Nothing in the cart. Add something." << std::endl;
+		return;
+	}
+	std::cout << "Your products: " << std::endl;
+	std::cout << products << std::endl;
+}
+
+
+const Receipt& Receipt :: operator=(const Receipt& receipt)
 {
 	num = receipt.num;
 	size = receipt.size;
@@ -53,13 +73,13 @@ Receipt& Receipt :: operator=(const Receipt& receipt)
 	products = receipt.products;
 	return *this;
 }
-
+/*
 void Receipt::add(const Product& product, const int& count)
 {
 	ReceiptLine tmp(product, count, product.get_cost());
 	add(tmp, count);
 }
-
+*/
 void Receipt::add(const ReceiptLine& line, const int& count)
 {
 	int id = products._find(line);
@@ -84,14 +104,7 @@ void Receipt::remove(const ReceiptLine& product, const int& count)
 	}
 }
 
-void Receipt::print_basket() const {
-	if (!size) {
-		std::cout << "Nothing in the cart. Add something!" << std::endl;
-		return;
-	}
-	std::cout << "Your products: " << std::endl;
-	std::cout << products << std::endl;
-}
+
 
 double Receipt::sum() const
 {
@@ -101,14 +114,14 @@ double Receipt::sum() const
 	}
 	return sum;
 }
-
+/*
 void Receipt::print_receiptline() const {
-	if (!size) std::cout << "Nothing in the cart. Add something!" << std::endl;
+	if (!size) std::cout << "Nothing in the cart. Add something." << std::endl;
 	std::cout << "Your products:: " << std::endl;
 	for (int i = 0; i < size; i++)
 		std::cout << products[i] << std::endl;
 }
-
+*/
 void Receipt:: pdate() {
 	date.now();
 }
@@ -122,7 +135,7 @@ int Receipt::len() const
 	return size;
 }
 
-bool Receipt::empty()
+bool Receipt::empty() const
 {
 	return size == 0;
 }
@@ -136,7 +149,7 @@ ReceiptLine* Receipt::find(const Base& product) const
 	}
 	return nullptr;
 }
-ReceiptLine* Receipt::find(const std::string& product) const
+ ReceiptLine* Receipt::find(const std::string& product) const
 {
 	ReceiptLine tmp;
 	for (int i = 0; i < size; i++)
